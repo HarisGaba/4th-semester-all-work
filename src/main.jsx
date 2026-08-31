@@ -6,12 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import App from './App.jsx'
 import { ToastContainer, Zoom } from 'react-toastify';
 import { ThemeProvider } from './context/Themecontext.jsx';
-
 import { Provider } from 'react-redux';
 import { store } from "./redux/store.js";
+import { Analytics } from "@vercel/analytics/react"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Analytics/>
     <BrowserRouter>
       <Provider store={store}>
         <ThemeProvider>
