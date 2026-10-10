@@ -15,6 +15,21 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const AllUsers = createAsyncThunk(
+  'auth/allusers',
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await api.get("/auth/allusers")
+      return res.data
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message ||
+        error.message
+      );
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -31,6 +46,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // register cases
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -41,6 +57,20 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // all users cases
+      .addCase(AllUsers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(AllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(AllUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
