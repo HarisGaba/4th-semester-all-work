@@ -8,6 +8,9 @@ import Addproducts from './page/add_product'
 import ProductPage from './page/products'
 import Signup from './page/signup'
 import Login from './page/login'
+import Forget from './page/forget_pass'
+import Reset from './page/reset'
+import Otp from './page/otp'
 
 
 const App = () => {
@@ -22,6 +25,9 @@ const App = () => {
         <Route path="Products" element={<ProductPage />} />
         <Route path="/dashboard/login" element={<Login />} />
         <Route path="/dashboard/Signup" element={<Signup />} />
+        <Route path="/dashboard/Forget-Password" element={<Forget />} />
+        <Route path="/dashboard/Reset" element={<Reset />} />
+        <Route path="/dashboard/Otp" element={<Otp />} />
       </Route>
     </Routes>
   )
