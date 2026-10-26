@@ -1,23 +1,26 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
-import { TooltipProvider } from "@/components/ui/tooltip"
-import App from './App.jsx'
-import { ToastContainer, Zoom } from 'react-toastify';
-import { ThemeProvider } from './context/Themecontext.jsx';
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
+import { ToastContainer, Zoom } from "react-toastify";
+import { Analytics } from "@vercel/analytics/react";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "./context/Themecontext.jsx";
 import { store } from "./redux/store.js";
-import { Analytics } from "@vercel/analytics/react"
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import LiveUpdates from "./components/LiveUpdates";
+import App from "./App.jsx";
+import "./index.css";
+import "./premium.css";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Analytics/>
+    <Analytics />
+
     <BrowserRouter>
       <Provider store={store}>
         <ThemeProvider>
           <TooltipProvider>
-
             <ToastContainer
               position="top-center"
               autoClose={5000}
@@ -32,11 +35,13 @@ createRoot(document.getElementById('root')).render(
               transition={Zoom}
             />
 
-            <App />
-            
+            <ErrorBoundary>
+              <LiveUpdates />
+              <App />
+            </ErrorBoundary>
           </TooltipProvider>
         </ThemeProvider>
       </Provider>
     </BrowserRouter>
   </StrictMode>
-)
+);

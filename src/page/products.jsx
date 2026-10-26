@@ -9,15 +9,15 @@ export default function ProductsList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Category Filter State
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Edit Modal State
+
   const [editingProduct, setEditingProduct] = useState(null);
 
   const API_URL = "https://6a5f186c98d9f02aed7a128d.mockapi.io/products";
 
-  // GET Products
+
   const fetchProducts = async () => {
     try {
       const response = await fetch(API_URL);
@@ -31,10 +31,44 @@ export default function ProductsList() {
   };
 
   useEffect(() => {
-    fetchProducts();
+    const controller = new AbortController();
+
+    async function loadProducts() {
+      try {
+        const response = await fetch(API_URL, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to load products.");
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid products response.");
+        }
+
+        if (!controller.signal.aborted) {
+          setProducts(data);
+        }
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error("Fetch Error:", error);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadProducts();
+
+    return () => controller.abort();
   }, []);
 
-  // DYNAMIC CATEGORIES
+
   const dynamicCategories = [
     "All",
     ...new Set(
@@ -44,7 +78,7 @@ export default function ProductsList() {
     ),
   ];
 
-  // DELETE Product
+
   const handleDelete = async (id, e) => {
     e.stopPropagation();
     if (!confirm("Are You Sure U want To Delete Product?")) return;
@@ -65,13 +99,13 @@ export default function ProductsList() {
     }
   };
 
-  // EDIT Button Handler
+
   const handleEditClick = (product, e) => {
     e.stopPropagation();
     setEditingProduct(product);
   };
 
-  // UPDATE Product
+
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -95,7 +129,7 @@ export default function ProductsList() {
     }
   };
 
-  // Filter Products based on Selected Category Dropdown
+
   const filteredProducts =
     selectedCategory === "All"
       ? products
@@ -111,7 +145,7 @@ export default function ProductsList() {
   return (
     <div className="min-h-screen bg-background text-foreground p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header and Category Dropdown Filter */}
+        {                                         }
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="text-4xl font-bold mb-1">All Products</h1>
@@ -120,7 +154,7 @@ export default function ProductsList() {
             </p>
           </div>
 
-          {/* DYNAMIC CATEGORY DROPDOWN */}
+          {                               }
           <div className="flex items-center gap-3 bg-card p-3 rounded-lg border border-border shadow-sm">
             <label className="text-sm font-semibold text-card-foreground whitespace-nowrap">
               Filter by Category:
@@ -139,7 +173,7 @@ export default function ProductsList() {
           </div>
         </div>
 
-        {/* LINE-WISE / TABLE PRODUCT LIST */}
+        {                                    }
         {filteredProducts.length === 0 ? (
           <div className="text-center py-12 bg-card rounded-xl border border-border">
             <p className="text-muted-foreground font-medium">There are no products.</p>
@@ -169,7 +203,7 @@ export default function ProductsList() {
                         #{product.id}
                       </td>
 
-                      {/* Image & Name & Description */}
+                      {                                }
                       <td className="p-4 min-w-[280px]">
                         <div className="flex items-center gap-4">
                           <img
@@ -190,24 +224,24 @@ export default function ProductsList() {
                         </div>
                       </td>
 
-                      {/* Category */}
+                      {              }
                       <td className="p-4 whitespace-nowrap">
                         <span className="text-xs font-medium bg-muted px-2.5 py-1 rounded-full text-muted-foreground border border-border">
                           {product.category}
                         </span>
                       </td>
 
-                      {/* Brand */}
+                      {           }
                       <td className="p-4 whitespace-nowrap text-sm text-muted-foreground">
                         {product.brand || "-"}
                       </td>
 
-                      {/* Price */}
+                      {           }
                       <td className="p-4 whitespace-nowrap font-bold text-emerald-500 text-base">
                         ${product.price}
                       </td>
 
-                      {/* Action Buttons */}
+                      {                    }
                       <td className="p-4 whitespace-nowrap text-center">
                         <div className="flex items-center justify-center gap-2">
                           <Button
@@ -234,7 +268,7 @@ export default function ProductsList() {
           </div>
         )}
 
-        {/* Edit Modal (Form) */}
+        {                       }
         {editingProduct && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
             <Card className="w-full max-w-lg bg-card text-card-foreground border-border max-h-[90vh] overflow-y-auto">
@@ -257,7 +291,7 @@ export default function ProductsList() {
                     />
                   </div>
 
-                  {/* IMAGE URL TEXT INPUT */}
+                  {                          }
                   <div>
                     <label className="text-sm font-medium text-card-foreground">Image URL</label>
                     <Input

@@ -1,0 +1,40 @@
+{
+  "filesScanned": 150,
+  "filesChanged": 8,
+  "commentsRemoved": 79,
+  "licensesPreserved": 0,
+  "changes": [
+    {
+      "file": "Frontend\\src\\components\\ui\\chart.jsx",
+      "removed": 1
+    },
+    {
+      "file": "Frontend\\src\\components\\ui\\sidebar.jsx",
+      "removed": 10
+    },
+    {
+      "file": "Frontend\\src\\page\\add_product.jsx",
+      "removed": 13
+    },
+    {
+      "file": "Frontend\\src\\page\\Productdetail.jsx",
+      "removed": 12
+    },
+    {
+      "file": "Frontend\\src\\page\\products.jsx",
+      "removed": 17
+    },
+    {
+      "file": "Frontend\\src\\premium.css",
+      "removed": 2
+    },
+    {
+      "file": "Frontend\\src\\redux\\slices\\authslices.js",
+      "removed": 2
+    },
+    {
+      "file": "Backend/html code.txt",
+      "removed": 22
+    }
+  ]
+}

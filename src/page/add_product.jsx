@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
-// React Toastify Imports
+
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,7 +23,7 @@ export default function Addproducts() {
     { name: "Green", value: "#16a34a" },
   ];
 
-  // Config object for Toastify
+
   const toastConfig = {
     position: "top-center",
     autoClose: 5000,
@@ -36,7 +36,7 @@ export default function Addproducts() {
     transition: Zoom,
   };
 
-  // Form States
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -60,20 +60,20 @@ export default function Addproducts() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Input change handler
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Toggle Size selection
+
   const handleSizeToggle = (size) => {
     setSelectedSizes((prev) =>
       prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
     );
   };
 
-  // Toggle Color selection
+
   const handleColorToggle = (colorName) => {
     setSelectedColors((prev) =>
       prev.includes(colorName)
@@ -82,7 +82,7 @@ export default function Addproducts() {
     );
   };
 
-  // Submit Handler / API Call
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -140,7 +140,7 @@ export default function Addproducts() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-8">
-      {/* Toastify Container Component */}
+      {                                  }
       <ToastContainer />
 
       <div className="max-w-7xl mx-auto">
@@ -150,7 +150,7 @@ export default function Addproducts() {
         </p>
 
         <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-6">
-          {/* Left Side */}
+          {               }
           <Card className="lg:col-span-2 bg-card text-card-foreground border-border">
             <CardHeader>
               <CardTitle>Product Information</CardTitle>
@@ -254,7 +254,7 @@ export default function Addproducts() {
                 </div>
               </div>
 
-              {/* Dynamic Sizes */}
+              {                   }
               <div>
                 <Label className="mb-3 block">Available Sizes</Label>
                 <div className="flex flex-wrap gap-3">
@@ -278,7 +278,7 @@ export default function Addproducts() {
                 </div>
               </div>
 
-              {/* Dynamic Colors */}
+              {                    }
               <div>
                 <Label className="mb-3 block">Available Colors</Label>
                 <div className="flex gap-4">
@@ -304,7 +304,7 @@ export default function Addproducts() {
             </CardContent>
           </Card>
 
-          {/* Right Side */}
+          {                }
           <Card className="bg-card text-card-foreground border-border">
             <CardHeader>
               <CardTitle>Product Images & Status</CardTitle>
@@ -369,7 +369,7 @@ export default function Addproducts() {
                 </div>
               </div>
 
-              {/* Image Preview Area */}
+              {                        }
               <div>
                 <Label>Preview</Label>
                 <div className="mt-3 h-56 rounded-xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground overflow-hidden bg-background">

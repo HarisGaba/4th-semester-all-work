@@ -12,7 +12,7 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Static options
+
   const colors = [
     {
       name: "Black",
@@ -47,7 +47,7 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [wishlist, setWishlist] = useState(false);
 
-  // API se Single Product Fetch Karna
+
   useEffect(() => {
     const fetchSingleProduct = async () => {
       try {
@@ -87,8 +87,8 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col justify-center items-center p-6 md:p-10">
-      
-      {/* Back Button */}
+
+      {                 }
       <div className="max-w-6xl w-full mb-4">
         <Button
           variant="ghost"
@@ -102,7 +102,7 @@ export default function ProductDetail() {
       <Card className="max-w-6xl w-full shadow-xl rounded-2xl bg-card text-card-foreground border-border">
         <CardContent className="grid md:grid-cols-2 gap-10 p-8">
 
-          {/* Dynamic Image */}
+          {                   }
           <div className="flex justify-center items-center">
             <img
               src={
@@ -115,7 +115,7 @@ export default function ProductDetail() {
             />
           </div>
 
-          {/* Dynamic Product Details */}
+          {                             }
           <div className="space-y-6">
             <div>
               <div className="flex items-center gap-2">
@@ -129,7 +129,7 @@ export default function ProductDetail() {
                 )}
               </div>
 
-              {/* Dynamic Name */}
+              {                  }
               <h1 className="text-3xl font-bold mt-2 text-foreground">{product.name}</h1>
 
               <div className="flex items-center gap-1 mt-2 text-yellow-500">
@@ -141,19 +141,19 @@ export default function ProductDetail() {
                 <span className="text-muted-foreground ml-2">(4.9)</span>
               </div>
 
-              {/* Dynamic Price */}
+              {                   }
               <p className="text-3xl font-bold mt-4 text-primary">
                 ${product.price}
               </p>
             </div>
 
-            {/* Dynamic Description */}
+            {                         }
             <p className="text-muted-foreground">
               {product.description ||
                 "Experience premium quality and high-grade materials designed for maximum comfort and style."}
             </p>
 
-            {/* Colors */}
+            {            }
             <div>
               <h3 className="font-semibold mb-3 text-foreground">Select Color</h3>
               <div className="flex gap-3">
@@ -172,7 +172,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Sizes */}
+            {           }
             <div>
               <h3 className="font-semibold mb-3 text-foreground">Select Size</h3>
               <div className="flex flex-wrap gap-3">
@@ -188,7 +188,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Quantity */}
+            {              }
             <div>
               <h3 className="font-semibold mb-3 text-foreground">Quantity</h3>
               <div className="flex items-center gap-4">
@@ -214,7 +214,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Action Buttons */}
+            {                    }
             <div className="flex gap-4 pt-4">
               <Button className="flex-1">Add to Cart</Button>
               <Button variant="secondary" className="flex-1">
